@@ -1,0 +1,551 @@
+---
+title: "Open Policy Analysis: Concepts and Applications"
+subtitle: "Metodos En Pauta, Universidad de Pernambuco"
+author: "Fernando Hoces de la Guardia, BITSS"
+date:  "`r format(as.Date('2021-02-22'), '%d %B %Y')` | [slides](https://bitss-opa.github.io/slides-upernambuco-opa2021/#1)"
+output: 
+  
+  xaringan::moon_reader:
+    footer: "These slides available at https://bitss-opa.github.io/slides-upernambuco-opa2021/#1"
+    css: [default, metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#      slideNumberFormat: |
+#          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+editor_options: 
+  
+  chunk_output_type: console
+---
+count: true
+
+background-image: url("Images/BITSSlogo.png"), url(Images/cega.png)
+background-size: 600px, 200px
+background-position: 50% 10% , 100% 95% 
+name: about-bitss
+
+<style>
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+pre.sourceCode {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+/*
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: blue;
+}
+*/
+</style>
+
+
+
+```{css, echo=FALSE}
+# CSS for including pauses in printed PDF output (see bottom of lecture)
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+```
+
+
+```{r setup, include=FALSE}
+options(knitr.duplicate.label = "allow")
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  fig.align="center",  
+  fig.height=4, #fig.width=6,
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T ,#, 
+  echo=F #warning=F, message=F
+  )
+library(tidyverse)
+library(hrbrthemes)
+library(fontawesome)
+
+```
+
+
+# About Us
+  
+  
+### [BITSS](https://bitss.org)   
+
+.pull-left[
+The Berkeley Initiative for Transparency in the Social Sciences works to improve </br>the credibility of science by </br>
+advancing transparency, </br> reproducibility,  rigor, and </br> ethics in research. 
+
+### OPA  
+  
+
+ Aleks Bogdanoski  
+
+ Fernando Hoces  
+ 
+ Katie Hoeberling  
+
+]
+.pull-right[ .right[
+We are part of the Center for Effective Global Action ([CEGA](https://cega.berkeley.edu/)).   
+ </br></br></br></br></br></br></br></br>
+ Edward Miguel   
+
+ Jui Paithane
+ 
+ [Undergraduate RAs](https://www.bitss.org/about/people/)
+
+  ]]
+
+
+
+---
+count: true
+name: motivation
+background-image: url("Images/alternative-facts-crowd.png"), url("Images/temp.png")
+background-size: 800px, 300px
+background-position: 0% 0%, 80% 10%  
+
+
+
+# Motivation: Rise of Alternative Facts
+
+
+<!--
+<br>
+<iframe width="360" height="250" src="https://www.youtube.com/embed/rV_YxKOE90g?start=188" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+-->
+
+
+.pull-right[
+<br><br><br><br><br><br><br><br>
+*Senator [discussing facts]("https://www.youtube.com/embed/rV_YxKOE90g?start=188") on unemployment insurance*
+
+*Interviewer:* “We I have looked at what economist are saying, and [...] there is no measurable evidence that people are staying at home because of [$600 unemp. insurance]” 
+
+*Congressman:* “[scoffs] I don’t know which economist you are talking about, but ...” 
+]
+
+---
+class: inverse, center, middle
+name: framework
+
+# A Framework for Open Policy Analysis
+
+
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width= %total% ></html>
+
+.font170[Based on [Hoces, Grant and Miguel 2020](https://tinyurl.com/1qypbihb)]
+---
+name: motivation
+
+# .font80[Policy Analysis And The Evidence-Based Policy Movement]
+.font130[
+Evidence-Based movement is growing.  
+- The golden age of evidence-based policy (Haskins 2017).  
+- Credible causal evidence (Angrist & Pischke, 2010).  
+- Transparency and reproducibility of research (Miguel et al. 2014).  
+- Commission on Evidence-Based Policymaking (CEBP, 2017)  
+]
+--
+
+.font130[
+Policy Analysis is a fundamental link. 
+- As many definitions as textbooks (Dunn, 2015; Weimer & Vining, 2017; Williams, 1971)  
+- Common denominator: client-oriented empirical analysis meant to inform a specific policy debate  
+- Aspires at scientific rigor. (Wildavsky 1979),  
+]
+---
+background-image: url(Images/policy_agencies.png)
+background-size: cover
+# Examples of Policy Analysts     
+
+
+---
+background-image: url(Images/figure_1_1.png)
+background-size: contain
+count: false
+# One Link From Evidence to Policy
+
+---
+background-image: url(Images/figure_1_1_black2.png)
+background-size: contain 
+# One Link From Evidence to Policy
+
+---
+
+# Reproducibility Crisis In Empirical Research     
+
+.font140[
+<br>
+- Large magnitude of publication bias (Franco et al 2014).  
+]
+--
+.font140[
+- Evidence of extensive p-hacking across social science disciplines (Gerber et al 2008, Brodeur et al 2016).  
+]
+--
+.font140[
+- Replication rates are low (Collaboration et al, 2015 , Camerer et al, 2016, 2018).  
+]
+--
+.font140[
+- Computational reproducibility is also low (Stodden et al 2016, Chang and Li 2015, Gertler et al 2018).  
+]
+---
+# The Open Science Movement    
+
+.font140[
+<br>
+- Definition of principles of Open Science/Research Transparency (Miguel et al 2014)
+]
+--
+.font140[
+- Development of guidelines to operationalize principles of Open Science (Nosek et al 2015)
+]
+--
+.font140[
+- Journals and funders: Journals (Science + 5k other journals), Registries (AEA), Funders (NIH, NSF and multiple donors)
+]
+---
+
+# Credibility Crisis Of Policy Analysis
+.font140[
+<br>
+- Incredible Certitudes (Manski, 2013)  
+]
+--
+.font140[
+- Report wars (Wesselink et al, 2013)
+]
+--
+.font140[
+- Alternative facts (“The Death of Expertise” Nichols, 2017; “The Death of Truth”, Kakutani 2018; “Post-Truth”, McIntyre 2018)
+]
+---
+# How This Affects The Evidence Based Policy Link?
+
+---
+background-image: url(Images/figure_1_1.png)
+background-size: contain
+count:false
+
+# How This Affects The Evidence Based Policy Link?
+
+
+---
+background-image: url(Images/figure_1_1_black.png)
+background-size: contain 
+# How This Affects The Evidence Based Policy Link?  
+
+---
+background-image: url(Images/fig2.png)
+background-size: contain 
+count:false
+# How This Affects The Evidence Based Policy Link?
+
+---
+
+# Relevance
+
+.font140[
+<br>
+Main consequences of policy analysis that lacks openness:
+
+
+- 1 - Cherry picking evidence.
+]
+--
+.font140[
+- 2 - Challenging to automate and improve systematically recurring reports.
+]
+--
+.font140[
+- 3 - Difficulty understanding how research informs policy analysis.
+]
+---
+
+# Cherry Picking Evidence
+<br>
+.font150[
+    <blockquote>
+    “When I was director of the CBO, I was very frustrated when we would write a policy report [saying] a certain policy would have these two advantages and these two disadvantages, and the advocates would quote only the part about the advantages, and the opponents would quote only the part about the disadvantages. That encourages the view that there are simple answers. There aren’t generally simple answers. There are trade-offs.”
+</br></br>    
+.right[  <cite> Douglas Elmendorf (Director of CBO, 2009-2015)
+Harvard Magazine, [2016](https://harvardmagazine.com/2016/09/a-moral-conscience-for-economics))</cite> ]
+    </blockquote>
+]
+---
+count: false
+# Cherry Picking Evidence
+<br>
+.font150[
+    <blockquote>
+    “When I was director of the CBO, I was very frustrated when we would write a policy report [saying] a certain policy would have <b>these two advantages and these two disadvantages</b>, and the <b>advocates</b> would <b>quote only</b> the part about the <b>advantages</b>, and the <b>opponents</b> would quote <b>only</b> the part about the <b>disadvantages.</b> That encourages the view that there are simple answers. There aren’t <b>generally simple answers</b>. There are <b>trade-offs</b>.”
+</br></br>    
+.right[  <cite> Douglas Elmendorf (Director of CBO, 2009-2015)
+Harvard Magazine, [2016](https://harvardmagazine.com/2016/09/a-moral-conscience-for-economics))</cite> ]
+    </blockquote>
+]
+
+---
+
+# Open Science
+<br>
+
+.font180[
+
+|           	|                  Empirical<br>Research                  	|         Policy<br>Analysis         	|
+|:---------:	|:-------------------------------------------------------:	|:----------------------------------:	|
+| **Problems**  	|                Reproducibility<br>Crisis                	|        Credibility<br>Crisis       	|
+| **Solutions** 	| Open Science<br>Principles, Guidelines,<br>Applications 	| ...	|
+]
+---
+
+# Open Policy Analysis
+<br>
+
+.font180[
+
+|           	|                  Empirical<br>Research                  	|         Policy<br>Analysis         	|
+|:---------:	|:-------------------------------------------------------:	|:----------------------------------:	|
+| **Problems**  	|                Reproducibility<br>Crisis                	|        Credibility<br>Crisis       	|
+| **Solutions** 	| Open Science<br>Principles, Guidelines,<br>Applications 	| Open Policy Analysis<br>Principles 	|
+]
+
+---
+
+background-image: url(Images/opa_framework.svg)
+background-size: contain
+count:true
+# A Framework for Open Policy Analysis
+
+---
+class: inverse, center, middle
+name: case_studies
+
+# Open Policy Analysis Applications
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width= %total% ></html>
+---
+count: true
+# Deworming Interventions   
+ - Parasitic worm infections are endemic in many countries, disproportionately affecting the poor  
+ - They interfere with regular bodily processes by decreasing nutrient uptake and can thus lead to serious consequences on human health, education outcomes, and long-term economic well being  
+ - Mass deworming interventions, at school level, have been propose as a cost-effective approach to tackle this problem
+
+--
+ 
+## Different settings for deworming  
+- Context of original study (Kenya, 1998-99) had very high prevalence rates of worm infections
+- Implementation costs where very low ($0.42 per round of treatment)
+- Length of treatment was relatively short (2.4 years)
+- Current deworming settings have lower prevalnce rates, 
+varying implementation costs and length of treatments
+
+--
+
+## Strong debate around initial results  
+- Ozier ([2020](https://academic.oup.com/wbro/advance-article/doi/10.1093/wbro/lkaa005/6009048)) summarizes differences between original findings (Miguel and Kremer 2004) and a re-analysis (Aiken et al, 2015). Emphazises the role of communication of results in a reanalysis. 
+- This type of debate (result/re-analysis) can be seen in several other topics. For example: minimum wage, inmigration, taxation. 
+- OPA need not guarante agreement on key research finding, but should help avoid multiple policy reports
+
+---
+
+# OPA on Deworming Interventions (Kenya+)
+
+<br>
+.font140[
+## Contributions of OPA to deworming:  
+  1. Selected one policy estimate among several alternatives and establish a clear link between it and underlying assumptions 
+  2. Added documentation to increase reproducibility 
+  3. Created a public repository with all materials for one-click reproducibility 
+
+]
+---
+background-image: url(Images/dw-open-out1.png), url(Images/dw-open-out2.png), url(Images/dw-open-out3.png), url(Images/open_output_all.svg)  
+background-size: 500px, 500px, 500px, 100px
+background-position: 100% 80%, 70% 40%, 40% 0%, 15% 5%
+count: true
+# Open Output
+
+.pull-left[
+## [Demo](https://bitss-opa.shinyapps.io/dw-app/)
+
+<br>
+## Main features
+- One clear output  
+previously agreed in   
+consultation with  
+policy partner
+- Two additional tabs to modify assumptions  
+(key assumptions and all assumptions)
+- Each source is classified into research,   
+data, or guesswork
+- High level equations added to illustrate location of components
+- Added feature to modify standard deviations
+- Track values of each component
+
+
+]
+
+---
+background-image: url(Images/dw-open-an2.png), url(Images/dw-open-an1.png), url(Images/open_analysis.svg)   
+background-size: 400px, 400px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Analysis
+
+.pull-left[
+## [Demo](https://bitss-opa.github.io/opa-deworming/)
+<br>
+## Main features
+- Complete narrative description of the methodology
+- Translation of each narrative step into an equation
+- Implementation of each equation into code
+- Combine all of the above into using a dynamic document (RMarkdown)
+- Presentation of narrative, equations, and code in layered fashion to avoid overwhelming the reader
+Icon figure  
+
+]
+
+---
+background-image: url(Images/dw-open-mat2.png), url(Images/dw-open-mat1.png), url(Images/open_materials.svg)  
+background-size: 600px, 600px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Materials
+
+.pull-left[
+## [Demo](https://github.com/BITSS-OPA/opa-deworming)
+<br>
+## Main features
+- One-click reproducible   
+documentation and app
+- Extensive readme files
+- Clear folder structure
+- Version controlled
+- Open data
+- Acknowledgment to all contributors
+
+]
+
+
+---
+count: true
+
+# Lessons for future OPA projects: Costs
+
+- Costs (approx bandwidth over a year at full time): 
+ - Principal Investigator 30-50% 
+ - Research assistant/programmer 100-150% 
+ - Program Manager 20%-30% 
+ - Original researcher: 1-5%
+ 
+- Not all policy analysis justify this level of effort
+ 
+- Characteristics that might justify an OPA: 
+ - Topics with strong disagreement on the facts among analysts 
+ - Recurrent reports (eg. ex-ante economic analysis from development banks/agencies)
+ - Topics that have large expected welfare effects (eg. tax reform, social cost of carbon)
+ 
+- With each new OPA project, templates will emerge and costs will likely fall  
+
+---
+count: true
+# Additional Benefits of OPA 
+
+## Easy to update and reuse  
+After deworming OPA is released, anybody can modify and improve into a newer version  
+
+## Clearer connection of how evidence from research is used in policy analysis
+Researchers can see clearly where their estimates are being used in a policy analysis. For example, the OPA can be used to justify power calculations of potential new studies. 
+
+## Connection with forecasting
+When there is little information for a parameter used in an OPA, a forecasting exercise can be carried out to elicit expert knowledge (DellaVigna, Pope, Vivalt [2019](https://science.sciencemag.org/content/366/6464/428.summary)).
+
+---
+
+
+# Our Plan for OPA
+<br>
+.font140[
+- Develop framework to support OPA
+- Support transition/adoption of OPA, and develop **OPA projects**
+- Train students and analysts 
+- Build a comunity of practice
+]
+
+---
+
+
+
+# Other OPA Project: Wealth Tax (US)
+
+<br>
+.font140[
+- 2019
+- [See here](https://www.bitss.org/opa/projects/progressive-wealth-tax/)
+]
+---
+
+
+background-image: url(Images/aspiration.png)
+background-size: contain
+background-position: 0% 0%
+count:true
+# An Aspiration
+
+.pull-right[
+.right[
+
+.font160[
+
+<br><br><br><br><br>
+Learn more at 
+
+[bitts.org/opa](https://www.bitss.org/opa/)
+
+]
+]
+]
+
+
+
+
+```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
+pagedown::chrome_print("01_slides.html", "01_slides.pdf" )
+
+```

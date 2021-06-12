@@ -1,0 +1,456 @@
+---
+title: "How Research Transparency Can Improve Social Science: Quality **and** Quantity"
+author: "Fernando Hoces de la Guardia, BITSS"
+subtitle: "Pre-doctoral Research in Economics (PRE) Workshop"
+date:  "June 2021 | [slides](https://bitss.github.io/slides-nyu/)"
+output: 
+  xaringan::moon_reader:
+    footer: "These slides available at https://bitss.github.io/slides-nyu/"
+    css: [default, metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#      slideNumberFormat: |
+#          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+editor_options: 
+  chunk_output_type: console
+---
+background-image: url("Images/BITSSlogo.png"), url(Images/cega.png)
+background-size: contain, 200px
+background-position: 50% 100% , 0% 100% 
+count:true 
+
+#[BITSS](https://bitss.org)   
+
+<style>
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+pre.sourceCode {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+/*
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: blue;
+}
+*/
+</style>
+
+
+
+```{css, echo=FALSE}
+# CSS for including pauses in printed PDF output (see bottom of lecture)
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+```
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  fig.align="center",  
+  fig.height=4, #fig.width=6,
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T ,#, 
+  echo=F #warning=F, message=F
+  )
+library(tidyverse)
+library(hrbrthemes)
+library(fontawesome)
+
+```
+
+
+
+
+.pull-left[
+The Berkeley Initiative for Transparency in the Social Sciences works to improve </br>the credibility of science by </br>
+advancing transparency, </br> reproducibility,  rigor, and </br> ethics in research. 
+
+.font130[**Core Team**]
+  
+
+ Aleks Bogdanoski  
+
+ Fernando Hoces  de la Guardia
+ 
+ Katie Hoeberling  
+ 
+ Edward Miguel
+
+]
+.pull-right[ .right[
+We are part of the Center for Effective Global Action ([CEGA](https://cega.berkeley.edu/)).   
+ </br></br></br></br></br></br></br>
+.font130[**Many Others**]
+
+CEGA staff
+
+Undergrad and Graduate RAs
+
+Catalysts
+
+Outside Collaborators   
+(Researchers, Programmers)
+  ]]
+ 
+
+
+---
+
+background-image: url("Images/ecosystem.PNG"), url(Images/cega.png)
+background-size: contain, 200px
+background-position: 50% 100% , 0% 100% 
+name: about-bitss
+count:true 
+
+# Part of the much larger Open Science Community 
+
+---
+# Table of Contents 
+
+</br>
+.font130[
+1. [Quality: Problems and Solutions](#quality)
+2. [Quantity: How research transparency can make social science more inclusive](#quantity)
+
+]
+
+---
+count:false
+name: quality
+# Table of Contents 
+
+</br>
+.font130[
+1. [**Quality: Problems and Solutions**](#quality)
+2. [Quantity: How research transparency can make social science more inclusive](#quantity)
+]
+
+
+---
+
+# What does it mean to do good science?
+
+.font140[
+Scientific Norms (Merton, 1942, [1973](https://sciencepolicy.colorado.edu/students/envs_5110/merton_sociology_science.pdf)): 
+
+- **Disinterestedness**: search for the truth
+
+- **Organized skepticism**: peer review and replication
+
+- **Communality**: researchers should share all the scientific output (papers, data, code and materials) 
+
+- **Universalism**: validity comes from quality of a scientific finding and not the hierarchies of those making the claims.
+]
+
+
+---
+background-image: url("Images/AMdV2007_01.PNG")
+background-size: contain
+background-position: 50% 100%  
+count:false
+
+# .font80[Researchers and Scientific Norms (Anderson et. al., 2007)]
+
+
+---
+background-image: url("Images/AMdV2007_02.png")
+background-size: contain
+background-position: 50% 100%  
+count:false
+
+# .font80[Researchers and Scientific Norms (Anderson et. al., 2007)]
+
+
+
+---
+background-image: url("Images/AMdV2007.png")
+background-size: contain
+background-position: 50% 100%  
+count:true
+
+# .font80[Researchers and Scientific Norms (Anderson et. al., 2007)]
+
+
+---
+background-image: url("Images/Brodeur.PNG")
+background-size: contain
+background-position: 50% 100%  
+
+
+# P-hacking (for Economics: Brodeur et. al 2016, 2020)
+
+
+---
+background-image: url("Images/Tess.PNG")
+background-size: contain
+background-position: 50% 100%  
+
+
+# Publication Bias (Franco et. al. 2014)
+
+
+---
+# .font80[ Low Replicability and Reproducibility ("Reproducibility Crisis")]
+</br></br>
+
+.font180[
+| Replication in Social Sciences<br>(same method, different sample) 	| Reproduction in Economics<br>(same data and methods) 	|
+|-------------------------------------------------------------------	|------------------------------------------------------	|
+| OSC ([2015](https://docs.google.com/document/d/1mm_4HZnEz_2Bh8XuiS2tpqCH08MFPyqUhi1baKPqR8Y/edit#heading=h.7vqf2cziid7z)): 30%-60%                      	                          | Chang & Li ([2015](https://www.nowpublishers.com/article/Details/CFR-0053)): 43%                               	|
+| Camerer et. al. ([2016](https://science.sciencemag.org/content/351/6280/1433)): ~60%                                      	| Gertler et. al. ([2017](https://www.nature.com/articles/d41586-018-02108-9)): 14%                          	|
+| Nosek & Camerer et. al. ([2018](https://www.nature.com/articles/s41562-018-0399-z)): ~60%                              	| Kingi et. al. ([2018](https://hautahi.com/static/docs/Replication_aejae.pdf)): 43%                            	|
+| Klein et. al. ([2018](https://journals.sagepub.com/doi/10.1177/2515245918810225)): 50%                                         	| Wood et. al. ([2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0209416#abstract0)): 25%                             	|
+]
+
+---
+
+# Registrations
+<br>
+.font130[
+- A registration is a record that contains minimal information about a study: title, authors, study country, status, keywords, abstract, start and end dates, outcomes, intervention information, basic research design, whether or not treatments are clustered (when performing an RCT), and Institutional Review Board (IRB) information. 
+
+
+- Preferably, it should be recorded before analyzing data
+
+- **The main goal:** track the complete body of knowledge in a topic of research, regardless of the direction and magnitude of the results.
+
+]
+
+
+---
+background-image: url("Images/plosone.PNG")
+background-size: contain
+background-position: 50% 100%  
+
+# Why Register: Kaplan and Irvin (2015)
+
+
+---
+# Pre-Analysis Plans
+<br>
+.font140[
+- PAPs are **extensive** methodological descriptions of the analysis to be performed before the endline data is collected
+
+- Helps to prevents p-hacking  
+
+- Only way to guarantee accurate statistical testing
+
+- Distinguishes confirmatory from exploratory analysis
+]
+
+---
+# Common Concerns About PAPs
+<br>
+.font130[
+|                                                           Critique                                                           |                                                                                                Response                                                                                               |
+|:----------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                PAPs take too much time and are <br>too difficult (Olken 2015)                                |                                                         A PAP changes the timing of the analytic <br>component, not clear that it increases it                                                        |
+|                  Scientific discovery often comes<br>from surprises. PAPs stifle <br>discovery (Olken 2015)                  |           PAPs do not prevent researchers from doing <br>exploratory work; they only require <br>researchers to be clear about the objectives <br>of their analyses (Ofosu and Posner 2020).          |
+| If replications are cheap they will <br>rule out false positives, making <br>PAPs irrelevant.<br>(Coffman and Niederle 2015) | Very few experiments are inexpensive as to perform <br>many replications. Moreover, most of the false <br>positives have been identified where experiments <br>are least expensive (lab experiments). |
+]
+
+---
+background-image: url("Images/results_blind_review.png")
+background-size: contain
+background-position: 50% 100%  
+# Another Reason: Register Reports
+
+
+
+---
+background-image: url("Images/3s_change.png")
+background-size: contain
+background-position: 50% 100%  
+# Change is Happenning: Christensen et. al., ([2020](https://osf.io/preprints/metaarxiv/5rksu/))
+
+
+---
+count:false
+name:quantity
+# Table of Contents 
+
+</br>
+.font130[
+1. [Quality: Problems and Solutions](#quality)
+2. [**Quantity: How research transparency can make social science more inclusive**](#quantity)
+]
+
+---
+count: true
+# Historical Background
+
+Economics Before Credibility Revolution (circa 1990, Angrist & Pieshke 2010):
+ - Largely driven by theory with unclear standards of how to judge empirical research
+ - Conjecture: opacity in standards made it more difficult for outsiders to publish
+
+Economics After Credibility Revolution:  
+ - Increase emphasis on well justified (credible) research design. 
+ - More transparency on the definition of rigor may have open the gates to a more diverse body of researchers. 
+
+There are still several steps in the production of knowledge where more transparency can drastically increase scale of scientific production in economics. Examples of questions where opacity still favors elite universities:  
+  - What defines an area of research as "hot"?
+  - What makes a paper publishable (after the analysis is completed)?
+  - How does a researcher obtain access to confidential/proprietary data?
+  
+
+---
+background-image: url("Images/research timeline-3.svg")
+background-size: contain
+
+# Sample Timeline for the Production of a Scientific Publication 
+
+--
+
+.font140[
+- If we only look at training and publications (what is observable on a CV!) we might attribute a disproportionate role to skill ("genius myth").
+]
+
+--
+.font140[
+<br><br><br><br><br>
+- Research transparency gives us tools to remove opacity out of every stage in this process
+]
+
+---
+# RT Solutions 
+
+| Research Transparency Solution                                                                         | Train | Idea dev | Relevant ? | Feasible ? | Known ? | Execution | Working paper | Publication |
+|--------------------------------------------------------------------------------------------------------|-------|----------|-----------|-----------|--------|-----------|---------------|-------------|
+| [Soc. Science Registry](https://www.socialscienceregistry.org) (AEA)                                   |       | ✔        |           |           |        |           |               |             |
+| Others: Aspredicted.org; osf.io; [3ie](https://ridie.3ieimpact.org)                                    |       | ✔        |           |           |        |           |               |             |
+| Register Reports (JDE, BITSS supported)                                                                |       |          |           |           |        | ✔         |               |             |
+| Conferences on research design ([WGAPE](https://tinyurl.com/nk7u42y5))                                 |       |          |           |           |        | ✔         |               |             |
+| [Soc. Science Reproduction](https://www.socialsciencereproduction.org) (BITSS)                         | ✔     | ✔        |           | ✔         |        | ✔         |               |             |
+| Repositories (GitHub, ICPSROpen, OSF, etc)                                                             | ✔     | ✔        |           | ✔         |        | ✔         |               |             |
+| Pre-prints (osf.io, arxiv)                                                                             |       |          |           |           |        |           | ✔             |             |
+| Reporting Guidelines                                                                                   |       |          |           |           |        |           |               |  ?          |
+| [Soc. Science Prediction](https://socialscienceprediction.org)  (Dellavigna & Vivalt, BITSS supported) |       |          |           |           | ✔      |           |               |             |
+| [Open Policy Analysis](https://cega.berkeley.edu/initiative/opa/) (BITSS)                              |       |          | ✔         |           |        |           |               |             | 
+
+
+
+---
+background-image: url(Images/figure_1_1.png)
+background-size: contain
+count:false
+
+# Why Open Policy Analysis?
+
+
+---
+background-image: url(Images/figure_1_1_black.png)
+background-size: contain 
+# Why Open Policy Analysis?
+
+---
+background-image: url(Images/dw-open-out1.png), url(Images/dw-open-out2.png), url(Images/dw-open-out3.png), url(Images/open_output_all.svg)  
+background-size: 500px, 500px, 500px, 100px
+background-position: 100% 80%, 70% 40%, 40% 0%, 15% 5%
+count: true
+# Open Output
+
+.pull-left[
+## [Demo](https://bitss-opa.shinyapps.io/dw-app/)
+
+<br>
+## Main features
+- One clear output  
+previously agreed in   
+consultation with  
+policy partner
+- Two additional tabs to modify assumptions  
+(key assumptions and all assumptions)
+- Each source is classified into research,   
+data, or guesswork
+- High level equations added to illustrate location of components
+- Added feature to modify standard deviations
+- Track values of each component
+
+
+]
+
+---
+background-image: url(Images/dw-open-an2.png), url(Images/dw-open-an1.png), url(Images/open_analysis.svg)   
+background-size: 400px, 400px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Analysis
+
+.pull-left[
+## [Demo](https://bitss-opa.github.io/opa-deworming/)
+<br>
+## Main features
+- Complete narrative description of the methodology
+- Translation of each narrative step into an equation
+- Implementation of each equation into code
+- Combine all of the above into using a dynamic document (RMarkdown)
+- Presentation of narrative, equations, and code in layered fashion to avoid overwhelming the reader
+Icon figure  
+
+]
+
+---
+background-image: url(Images/dw-open-mat2.png), url(Images/dw-open-mat1.png), url(Images/open_materials.svg)  
+background-size: 600px, 600px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Materials
+
+.pull-left[
+## [Demo](https://github.com/BITSS-OPA/opa-deworming)
+<br>
+## Main features
+- One-click reproducible   
+documentation and app
+- Extensive readme files
+- Clear folder structure
+- Version controlled
+- Open data
+- Acknowledgment to all contributors
+
+]
+
+
+---
+
+
+
+```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
+pagedown::chrome_print("01_slides.html", output = "01_slides.pdf")
+```
