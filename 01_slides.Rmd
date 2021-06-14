@@ -371,7 +371,7 @@ background-size: contain
 
 
 ---
-background-image: url("Images/priv_poor.png"), url(Images/priviledge.png), url(Images/pedigree.png)
+background-image: url(Images/priviledge.png), url("Images/priv_poor.png"), url(Images/pedigree.png)
 background-size: contain, contain
 background-position: 0% 100% , 50% 100%, 100% 100%  
 # .font80[These Type of Mecanisms are Best Documented in Etnographic Work]
@@ -485,10 +485,6 @@ documentation and app
 - Acknowledgment to all contributors
 
 ]
-
-
----
-
 
 
 ```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
