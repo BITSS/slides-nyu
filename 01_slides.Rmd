@@ -330,21 +330,20 @@ name:quantity
 count: true
 # Historical Background
 
-.font120[
+.font110[
 Economics Before Credibility Revolution (circa 1990, Angrist & Pischke [2010](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3)):
  - Largely driven by theory with unclear standards of how to judge empirical research
  - Conjecture: opacity in standards made it more difficult for **outsiders** to publish
 ]
 --
 
-.font120[
+.font110[
 Economics After Credibility Revolution:  
  - Increase emphasis on well justified (credible) research designs 
  - More transparency on the definition of quality may have open the gates to a more diverse body of researchers 
 ]
 --
-
-.font120[
+.font110[
 There are still several steps in the production of knowledge where more transparency can drastically increase scale of scientific production in economics. Examples of questions where opacity still favors elite universities:
   - What defines an area of research as "hot"?
   - What makes a paper publishable (after the analysis is completed)?
@@ -355,18 +354,17 @@ There are still several steps in the production of knowledge where more transpar
 background-image: url("Images/research timeline-3.svg")
 background-size: contain
 
-# .font90[Sample Timeline for the Production of a Scientific Publication]
+# .font80[Sample Timeline for the Production of a Scientific Publication]
 
 --
-
-.font130[
+.font120[
 - At each of this step, there are some advantages to belonging to the right "club". 
 - If we only look at training and publications (what is observable on a CV!) we might attribute a disproportionate role to skill ("genius myth").
 ]
 
 --
-.font130[
-<br><br><br><br><br><br>
+.font120[
+<br><br><br><br><br><br><br>
 - Research transparency gives us tools to remove opacity out of every stage in this process. 
 - Similar to the credibility revolution, we suspect that lowering this barriers will increase diversity, equity and inclusion (DEI).
 ]
